@@ -17,7 +17,10 @@ jobs:
           path: ".github/variables/myvars.env"
           log-variables: true
       - name: Using Variables
-        run: echo "The json output from the previous step is ${{ steps.pars-vars.outputs.json }}"
+        run: |
+          echo "The configuration name from the previous step is ${{ steps.pars-vars.outputs.configurationname }}"
+          echo "The environment from the previous step is ${{ steps.pars-vars.outputs.environment }}"
+          echo "The builds defined from the previous step are ${{ steps.pars-vars.outputs.builds }}"
   build-jobs:
     runs-on: ubuntu-latest
     needs: [pars-vars]
@@ -29,3 +32,4 @@ jobs:
       - name: Test Variables
         run: |
           echo "The buildtype for this specific build job is ${{ matrix.target.BuildType }}"
+          echo "The create release for this specific build job is ${{ matrix.target.create-release }}"
