@@ -23,7 +23,7 @@ jobs:
           echo "The builds defined from the previous step are ${{ steps.pars-vars.outputs.builds }}"
   build-jobs:
     needs: [pars-vars]
-    name: building ${{ matrix.target.name }}
+    name: ${{ matrix.target.name }}
     strategy:
       matrix:
         target: ${{ fromJSON(fromJSON(needs.pars-vars.outputs.variables).Builds) }}
@@ -38,16 +38,13 @@ jobs:
       - name: Test Variables
         run: |
           echo "The builds defined from the previous job are ${{ fromJSON(needs.pars-vars.outputs.variables).Builds }}"
-  test-jobs:
-    runs-on: ubuntu-latest
+  downstream-job:
     needs: [pars-vars, build-jobs]
-    name: testing ${{ matrix.target.name }}
-    strategy:
-      matrix:
-        target: ${{ fromJSON(fromJSON(needs.pars-vars.outputs.variables).Builds) }}
+    runs-on: ubuntu-latest
+    name: Downstream Job
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
       - name: Test Variables
         run: |
-          echo '${{ toJSON(matrix.target) }}'
-          echo "The buildtype for this specific build job is ${{ matrix.target.BuildType }}"
-          echo "The create release for this specific build job is ${{ matrix.target.create-release }}"
+          echo "The builds defined from the previous job are ${{ toJSON(fromJSON(needs.pars-vars.outputs.variables).Builds) }}"
