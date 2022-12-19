@@ -12,6 +12,6 @@ jobs:
         - windows
         - linux
         - macOS
-    uses: ./.github/workflows/build-and-test.yml
+    uses: ./.github/workflows/matrix-build-and-test.yml
     with:
       build-config: ${{ tojson(matrix) }}
