@@ -14,7 +14,7 @@ jobs:
         run: |
           echo "Variable TEST_VAR defined in .env of runner file before startup is $TEST_VAR"
           echo "Variable NEW_VAR12 from GH Env defined in pre-script is $NEW_VAR12"
-          echo $PATH
+          echo "updated PATH should now include /sample/directory/update/to/pathfile right here: $PATH"
       - name: Test New Vars
         run: |
           echo "Variable TEST_VAR defined in .env of runner file before startup is $TEST_VAR"
@@ -27,4 +27,4 @@ jobs:
         run: |
           echo "Variable TEST_VAR defined in .env of runner file before startup is $TEST_VAR"
           echo "Variable NEW_VAR12 from GH Env defined in pre-script is $NEW_VAR12"
-          echo $PATH
+          echo "updated PATH should now include /sample/directory/update/to/pathfile right here: $PATH"
