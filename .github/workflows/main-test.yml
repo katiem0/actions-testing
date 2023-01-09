@@ -1,0 +1,30 @@
+name: Main Build Job
+
+on: 
+  push:
+  workflow_dispatch:
+
+jobs:
+  get-variables:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Echo Variables
+        run: |
+          echo "Variable TEST_VAR defined in .env of runner file before startup is $TEST_VAR"
+          echo "Variable NEW_VAR12 from GH Env defined in pre-script is $NEW_VAR12"
+          echo $PATH
+      - name: Test New Vars
+        run: |
+          echo "Variable TEST_VAR defined in .env of runner file before startup is $TEST_VAR"
+          echo "Variable NEW_VAR12 from GH Env defined in pre-script is $NEW_VAR12"
+          echo "updated PATH should now include /sample/directory/update/to/pathfile right here: $PATH"
+  second-job:
+    runs-on: self-hosted
+    steps:
+      - name: Echo Variables
+        run: |
+          echo "Variable TEST_VAR defined in .env of runner file before startup is $TEST_VAR"
+          echo "Variable NEW_VAR12 from GH Env defined in pre-script is $NEW_VAR12"
+          echo $PATH
