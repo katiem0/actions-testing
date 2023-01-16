@@ -14,3 +14,8 @@ jobs:
     name: testing-further
     steps:
     - run: echo "testing"
+  further-release:
+    runs-on: ubuntu-latest
+    name: further-release
+    steps:
+    - run: echo "testing"

@@ -18,6 +18,7 @@ jobs:
           echo "The create release for this specific build job is ${{ fromJSON(inputs.variables).create-release }}"
   test:
     needs: [build]
+    name: further testing ${{ matrix.os }}
     uses: ./.github/workflows/testing-jobs.yml
     strategy:
       matrix:
@@ -27,6 +28,7 @@ jobs:
         - macOS
     with:
       variables: '${{ inputs.variables }}'
+      build-config: ${{ tojson(matrix) }}
   release:
     runs-on: ubuntu-latest
     needs: [test]
