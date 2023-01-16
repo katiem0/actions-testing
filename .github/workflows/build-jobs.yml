@@ -20,12 +20,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     name: testing
-    steps:
-      - name: Test Variables
-        run: |
-          echo "the variables for ${{ fromJSON(inputs.variables).Name }} are"  '${{ inputs.variables }}'
-          echo "The buildtype for this specific build job is ${{ fromJSON(inputs.variables).BuildType }}"
-          echo "The create release for this specific build job is ${{ fromJSON(inputs.variables).create-release }}"
+    steps
+    uses: ./.github/workflows/testing-jobs.yml
+    with:
+      variables: ''${{ inputs.variables }}'
+  secondary-build:
   release:
     runs-on: ubuntu-latest
     needs: [test]
