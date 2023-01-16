@@ -21,14 +21,6 @@ jobs:
     uses: ./.github/workflows/testing-jobs.yml
     with:
       variables: '${{ inputs.variables }}'
-  secondary-build:
-    runs-on: ubuntu-latest
-    needs: [pars-vars]
-    name: building Unrelated to matrix
-    steps:
-      - name: Test Variables
-        run: |
-          echo "The builds defined from the previous job are ${{ fromJSON(needs.pars-vars.outputs.variables).Builds }}"
   release:
     runs-on: ubuntu-latest
     needs: [test]
