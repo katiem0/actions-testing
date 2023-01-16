@@ -11,12 +11,12 @@ on:
 jobs:
   testing-further:
     runs-on: ubuntu-latest
-    name: testing-further ${{input.build-config }}
+    name: testing-further ${{inputs.build-config }}
     steps:
     - run: echo "testing"
   further-release:
     needs: [testing-further]
     runs-on: ubuntu-latest
-    name: further-release ${{input.build-config }}
+    name: further-release ${{inputs.build-config }}
     steps:
     - run: echo "testing"
