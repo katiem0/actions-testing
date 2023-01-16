@@ -22,7 +22,7 @@ jobs:
     name: testing
     uses: ./.github/workflows/testing-jobs.yml
     with:
-      variables: ''${{ inputs.variables }}'
+      variables: '${{ inputs.variables }}'
   secondary-build:
   release:
     runs-on: ubuntu-latest
