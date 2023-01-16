@@ -15,6 +15,7 @@ jobs:
     steps:
     - run: echo "testing"
   further-release:
+    needs: [testing-further]
     runs-on: ubuntu-latest
     name: further-release ${{input.build-config }}
     steps:
