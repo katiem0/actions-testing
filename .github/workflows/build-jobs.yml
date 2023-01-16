@@ -26,8 +26,6 @@ jobs:
         - linux
         - macOS
     with:
-      build-config: ${{ tojson(matrix) }}
-    with:
       variables: '${{ inputs.variables }}'
   release:
     runs-on: ubuntu-latest
