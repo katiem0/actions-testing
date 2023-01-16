@@ -1,0 +1,18 @@
+name: testing
+
+on:
+  workflow_call:
+    inputs:
+      variables:
+        required: true
+        type: string
+jobs:
+  testing-further:
+    runs-on: ubuntu-latest
+    name: testing-further
+    steps:
+      - name: Test Variables
+        run: |
+          echo "the variables for ${{ fromJSON(inputs.variables).Name }} are"  '${{ inputs.variables }}'
+          echo "The buildtype for this specific build job is ${{ fromJSON(inputs.variables).BuildType }}"
+          echo "The create release for this specific build job is ${{ fromJSON(inputs.variables).create-release }}"
