@@ -19,6 +19,14 @@ jobs:
   test:
     needs: [build]
     uses: ./.github/workflows/testing-jobs.yml
+    strategy:
+      matrix:
+        os:
+        - windows
+        - linux
+        - macOS
+    with:
+      build-config: ${{ tojson(matrix) }}
     with:
       variables: '${{ inputs.variables }}'
   release:
