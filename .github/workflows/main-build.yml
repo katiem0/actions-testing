@@ -23,10 +23,7 @@ jobs:
           echo "The builds defined from the previous step are ${{ steps.pars-vars.outputs.builds }}"
   build-jobs:
     needs: [pars-vars]
-    name: ${{ matrix.target.name }}
-    strategy:
-      matrix:
-        target: ${{ fromJSON(fromJSON(needs.pars-vars.outputs.variables).Builds) }}
+    name: downstream-job
     uses: ./.github/workflows/build-jobs.yml
     with:
       variables: '${{ toJSON(matrix.target) }}'
